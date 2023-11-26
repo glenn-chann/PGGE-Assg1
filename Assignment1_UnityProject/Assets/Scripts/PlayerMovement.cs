@@ -77,6 +77,7 @@ public class PlayerMovement : MonoBehaviour
         {
             crouch = !crouch;
             Crouch();
+            Debug.Log(crouch);
         }
     }
 

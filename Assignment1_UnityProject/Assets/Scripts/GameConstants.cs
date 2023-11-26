@@ -17,4 +17,5 @@ namespace PGGE
     {
         public static LayerMask PlayerMask { get; set; }
     }
+
 }

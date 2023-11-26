@@ -33,6 +33,7 @@ public class ThirdPersonCamera : MonoBehaviour
 
     void Start()
     {
+
         // Set to CameraConstants class so that other objects can use.
         CameraConstants.Damping = mDamping;
         CameraConstants.CameraPositionOffset = mPositionOffset;
