@@ -14,7 +14,6 @@ namespace PGGE
         Vector3 rayStart;
         Vector3 rayDir;
         float rayDistance;
-        GameObject Storing;
 
         public Transform CameraTransform
         {
@@ -52,14 +51,14 @@ namespace PGGE
             //-------------------------------------------------------------------
 
             rayStart = mPlayerTransform.position + (2 * Vector3.up);
-            rayDir = new Vector3((mCameraTransform.position.x - mPlayerTransform.position.x), 0, (mCameraTransform.position.z - mPlayerTransform.position.z)).normalized;
+            rayDir = new Vector3((mCameraTransform.position.x - mPlayerTransform.position.x),(mCameraTransform.position.y - (mPlayerTransform.position.y + 2)), (mCameraTransform.position.z - mPlayerTransform.position.z)).normalized;
             rayDistance = (mCameraTransform.position - mPlayerTransform.position).magnitude;
 
             if (Physics.Raycast(rayStart, rayDir, out hit, rayDistance, LayerMask.GetMask("Opaque")))
             {
                 Debug.DrawRay(rayStart, rayDir * rayDistance, Color.red, 0.01f);
                 Debug.Log("blocking");
-                mCameraTransform.position = hit.point;
+                mCameraTransform.position = hit.point - ((new Vector3((mCameraTransform.position.x - mPlayerTransform.position.x), mCameraTransform.position.y - (mPlayerTransform.position.y + 2), (mCameraTransform.position.z - mPlayerTransform.position.z)).normalized)*0.5f);
             }
             else
             {
