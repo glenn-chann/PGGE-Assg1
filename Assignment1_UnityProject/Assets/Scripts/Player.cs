@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
 
   // This is the maximum number of bullets that the player 
   // needs to fire before reloading.
-  public int mMaxAmunitionBeforeReload = 5;
+  public int mMaxAmunitionBeforeReload = 40;
 
   // This is the total number of bullets that the 
   // player has.
@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
 
   // This is the count of bullets in the magazine.
   [HideInInspector]
-  public int mBulletsInMagazine = 5;
+  public int mBulletsInMagazine = 40;
 
   [HideInInspector]
   public bool[] mAttackButtons = new bool[3];
@@ -123,7 +123,7 @@ public class Player : MonoBehaviour
     // }
     //-----------------------------------------------------------------------//
 
-    Vector3 dir = -mGunTransform.right.normalized;
+    Vector3 dir = mGunTransform.forward.normalized;
     // Find gunpoint as mentioned in the worksheet.
     Vector3 gunpoint = mGunTransform.transform.position +
                        dir * 1.2f -
@@ -197,9 +197,12 @@ public class Player : MonoBehaviour
 
   public void Fire(int id)
   {
-    if (mFiring[id] == false)
+    if (id == 2)
     {
-      StartCoroutine(Coroutine_Firing(id));
+        if (mFiring[id] == false)
+        {
+            StartCoroutine(Coroutine_Firing(id));
+        }
     }
   }
 
@@ -207,7 +210,7 @@ public class Player : MonoBehaviour
   {
     if (mBulletPrefab == null) return;
 
-    Vector3 dir = -mGunTransform.right.normalized;
+    Vector3 dir = mGunTransform.forward.normalized;
     Vector3 firePoint = mGunTransform.transform.position + dir *
         1.2f - mGunTransform.forward * 0.1f;
     GameObject bullet = Instantiate(mBulletPrefab, firePoint,
