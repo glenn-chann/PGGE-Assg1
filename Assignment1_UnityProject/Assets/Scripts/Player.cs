@@ -188,7 +188,7 @@ public class Player : MonoBehaviour
     StartCoroutine(Coroutine_DelayReloadSound());
   }
 
-  IEnumerator Coroutine_DelayReloadSound(float duration = 1.0f)
+  IEnumerator Coroutine_DelayReloadSound(float duration = 0.3f)
   {
     yield return new WaitForSeconds(duration);
 

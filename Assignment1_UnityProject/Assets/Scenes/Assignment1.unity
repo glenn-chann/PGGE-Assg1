@@ -1206,10 +1206,10 @@ MonoBehaviour:
   mCrossHair: {fileID: 236538616}
   mAudioSource: {fileID: 654126171}
   mAudioClipGunShot: {fileID: 8300000, guid: 4d4af27be602d214cb29acfc0a0aa0d3, type: 3}
-  mAudioClipReload: {fileID: 8300000, guid: ea154a2ab7f9a1e4d8b5eb74f2abe4ed, type: 3}
+  mAudioClipReload: {fileID: 8300000, guid: 0c39a88cd2acebd48a3c8157e4b4f4e7, type: 3}
   mBulletPrefab: {fileID: 1691027514373472607, guid: 3895fdcbfd71e5342843bf2ccdc84a10, type: 3}
   mBulletSpeed: 10
-  RoundsPerSecond: 00000000000000000a000000
+  RoundsPerSecond: 01000000010000000a000000
 --- !u!114 &654126173
 MonoBehaviour:
   m_ObjectHideFlags: 0
