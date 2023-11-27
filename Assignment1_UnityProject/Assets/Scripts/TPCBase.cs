@@ -60,7 +60,9 @@ namespace PGGE
             //vector will be pointing at the camera instead of above it. normalise because its a direction vector.
             rayDir = ((mCameraTransform.position - mPlayerTransform.position) - (2 * Vector3.up)).normalized;
 
-            //distance of the ray will be the magnitude of the vector camera's position - player's position
+            //distance of the ray will be the magnitude of the vector camera's position - player's position * 1.2f so that the line
+            //extends beyonf the back of the camera so that when we offset it away from the wall later there will still be a hit on 
+            //the raycast to move our camera to. 
             rayDistance = (mCameraTransform.position - mPlayerTransform.position).magnitude * 1.2f;
 
             //if the raycast hit an object on the opaque layermask

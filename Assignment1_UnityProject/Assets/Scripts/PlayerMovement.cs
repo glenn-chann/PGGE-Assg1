@@ -68,6 +68,11 @@ public class PlayerMovement : MonoBehaviour
             jump = true;
         }
 
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            mAnimator.SetTrigger("Reload");
+        }
+
         if (Input.GetKeyUp(KeyCode.Space))
         {
             jump = false;

@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
 
   // This is the maximum number of bullets that the player 
   // needs to fire before reloading.
-  public int mMaxAmunitionBeforeReload = 40;
+  public int mMaxAmunitionBeforeReload = 5;
 
   // This is the total number of bullets that the 
   // player has.
@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
 
   // This is the count of bullets in the magazine.
   [HideInInspector]
-  public int mBulletsInMagazine = 40;
+  public int mBulletsInMagazine = 5;
 
   [HideInInspector]
   public bool[] mAttackButtons = new bool[3];
