@@ -1143,8 +1143,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mPlayer: {fileID: 2145642068}
-  mPositionOffset: {x: 1, y: 2, z: -5}
-  mAngleOffset: {x: 45, y: 0, z: 0}
+  mPositionOffset: {x: 1, y: 2, z: -3}
+  mAngleOffset: {x: 0, y: 0, z: 0}
   mDamping: 10
   mMinPitch: -30
   mMaxPitch: 30

@@ -50,16 +50,27 @@ namespace PGGE
             // shift the camera position to the nearest intersected point
             //-------------------------------------------------------------------
 
+            //creating varibles for the raycast
+            //origin of the ray will be the player's position + 2 units on the y axis so the start of the ray will be at the head of the character instead of his feet
             rayStart = mPlayerTransform.position + (2 * Vector3.up);
-            rayDir = new Vector3((mCameraTransform.position.x - mPlayerTransform.position.x),(mCameraTransform.position.y - (mPlayerTransform.position.y + 2)), (mCameraTransform.position.z - mPlayerTransform.position.z)).normalized;
+
+            //direction of the ray will be the ((camera's position - player's position) - 2 units on the y axis ).normalised
+            //this is because we will need to subtract 2 units from the y axis since we added 2 on the origin this is so the 
+            //vector will be pointing at the camera instead of above it. normalise because its a direction vector.
+            rayDir = ((mCameraTransform.position - mPlayerTransform.position) - (2 * Vector3.up)).normalized;
+
+            //distance of the ray will be the magnitude of the vector camera's position - player's position
             rayDistance = (mCameraTransform.position - mPlayerTransform.position).magnitude;
 
+            //if the raycast hit an object on the opaque layermask
             if (Physics.Raycast(rayStart, rayDir, out hit, rayDistance, LayerMask.GetMask("Opaque")))
             {
                 Debug.DrawRay(rayStart, rayDir * rayDistance, Color.red, 0.01f);
                 Debug.Log("blocking");
+                //set camera position to the hit.point which is the point the raycast hit the wall - a new vector of the camera position to the player position.normalised * 0.5f to offset the camera off the wall slightly so that it wont clip through the walls at smaller angles
                 mCameraTransform.position = hit.point - ((new Vector3((mCameraTransform.position.x - mPlayerTransform.position.x), mCameraTransform.position.y - (mPlayerTransform.position.y + 2), (mCameraTransform.position.z - mPlayerTransform.position.z)).normalized)*0.5f);
             }
+            //if the raycast didnt hit anything
             else
             {
                 Debug.DrawRay(rayStart, rayDir * rayDistance, Color.green, 0.01f);
