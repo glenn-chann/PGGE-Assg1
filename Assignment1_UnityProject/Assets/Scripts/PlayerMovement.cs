@@ -69,7 +69,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Fly();
+                flying = !flying;
+                mAnimator.SetBool("Flying", flying);
         }
 
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -110,11 +111,7 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
-    void Fly()
-    {
-        flying = !flying;
-        mAnimator.SetBool("Flying", flying);
-    }
+    
 
     private Vector3 HalfHeight;
     private Vector3 tempHeight;
