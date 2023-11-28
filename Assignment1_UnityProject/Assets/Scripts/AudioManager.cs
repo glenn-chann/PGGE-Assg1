@@ -15,10 +15,11 @@ public class AudioManager : MonoBehaviour
     public AudioClip[] Dirt;
     public AudioClip[] Sand;
     public AudioClip[] flying;
-    public AudioClip[] fireball;
+    public AudioClip[] bite;
     public AudioClip[] scream;
 
-    public AudioClip[][] allClips = { };
+    public AudioClip[][] allFootsteps = { };
+    public AudioClip[][] allAttack = { };
 
     AudioClip[] CurrentClip;
 
@@ -28,7 +29,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        allClips = new AudioClip[][]
+        allFootsteps = new AudioClip[][]
         {
             Concrete,
             Metal,
@@ -68,7 +69,11 @@ public class AudioManager : MonoBehaviour
         int i = Random.Range(0, flying.Length);
         Source.PlayOneShot(flying[i]);
     }
-    
+    public void PlayBiteRandomly()
+    {
+        int i = Random.Range(0, bite.Length);
+        Source.PlayOneShot(bite[i]);
+    }
     public void PlayScreamRandomly()
     {
         int i = Random.Range(0, scream.Length);
@@ -88,7 +93,7 @@ public class AudioManager : MonoBehaviour
                 int hitMaterialIndex = (int)mat.Fmaterial;
                 Debug.Log("Hit Material: " + hitMaterialIndex);
 
-                CurrentClip = allClips[hitMaterialIndex];
+                CurrentClip = allFootsteps[hitMaterialIndex];
                 
             }
             else

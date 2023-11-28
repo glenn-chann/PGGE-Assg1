@@ -3017,7 +3017,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 28c920787867cee4481e59fed04fb739, type: 3}
   flying:
   - {fileID: 8300000, guid: 1f09052647499b443ae5ebdd8057b070, type: 3}
-  fireball: []
+  bite:
+  - {fileID: 8300000, guid: 23f3dc7983c969f4cbc2c387538659fc, type: 3}
   scream:
   - {fileID: 8300000, guid: 0c39a88cd2acebd48a3c8157e4b4f4e7, type: 3}
 --- !u!1 &1391729450
