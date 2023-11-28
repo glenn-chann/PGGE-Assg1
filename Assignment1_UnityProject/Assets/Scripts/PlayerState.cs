@@ -73,6 +73,8 @@ public class PlayerState_MOVEMENT : PlayerState
 
         mPlayer.Move();
 
+        
+
         for (int i = 0; i < mPlayer.mAttackButtons.Length; ++i)
         {
             if (mPlayer.mAttackButtons[i])

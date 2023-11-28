@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using PGGE.Patterns;
 using PGGE;
+using static Material;
 
 public class Player : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class Player : MonoBehaviour
   public FSM mFsm = new FSM();
   public Animator mAnimator;
   public PlayerMovement mPlayerMovement;
+  Material mat;
+  public AudioManager audioManager;
 
   // This is the maximum number of bullets that the player 
   // needs to fire before reloading.
@@ -41,6 +44,8 @@ public class Player : MonoBehaviour
 
   public float[] RoundsPerSecond = new float[3];
   bool[] mFiring = new bool[3];
+
+  
 
 
   // Start is called before the first frame update
@@ -176,6 +181,7 @@ public class Player : MonoBehaviour
   {
     mPlayerMovement.HandleInputs();
     mPlayerMovement.Move();
+    CheckFloorMat();
   }
 
   public void NoAmmo()
@@ -229,4 +235,29 @@ public class Player : MonoBehaviour
     mFiring[id] = false;
     mBulletsInMagazine -= 1;
   }
+
+  RaycastHit hit;
+    public void CheckFloorMat()
+    {
+        if (mPlayerMovement.mCharacterController.velocity == Vector3.zero)
+            return;
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, 10f))
+        {
+            Material mat = hit.collider.gameObject.GetComponent<Material>();
+
+            if (mat != null)
+            {
+                int hitMaterialIndex = (int)mat.Fmaterial;
+                Debug.Log("Hit Material: " + hitMaterialIndex);
+
+                // Play footstep sound based on the floor material
+                audioManager.PlayRandom(audioManager.allClips[hitMaterialIndex]);
+            }
+            else
+            {
+                Debug.LogWarning("No CustomMaterial component found on the hit object.");
+            }
+        }
+        Debug.Log(hit.collider.gameObject.name);
+    }
 }
