@@ -112,8 +112,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Fly()
     {
-        mAnimator.SetBool("Flying", !flying);
-        flying = !flying; 
+        flying = !flying;
+        mAnimator.SetBool("Flying", flying);
     }
 
     private Vector3 HalfHeight;
