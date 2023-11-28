@@ -1194,7 +1194,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mAnimator: {fileID: 147341974}
   mPlayerMovement: {fileID: 654126173}
-  mMaxAmunitionBeforeReload: 5
+  mMaxAmunitionBeforeReload: 40
   mAmunitionCount: 100
   mBulletsInMagazine: 40
   mAttackButtons: 000000
@@ -1210,8 +1210,8 @@ MonoBehaviour:
   mBulletPrefab: {fileID: 1691027514373472607, guid: 3895fdcbfd71e5342843bf2ccdc84a10, type: 3}
   mBulletSpeed: 10
   RoundsPerSecond:
-  - 0
-  - 0
+  - 1
+  - 1
   - 1.8
 --- !u!114 &654126173
 MonoBehaviour:
@@ -2629,7 +2629,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mAnimator: {fileID: 230244813}
   mPlayerMovement: {fileID: 2145642070}
-  mMaxAmunitionBeforeReload: 40
+  mMaxAmunitionBeforeReload: 5
   mAmunitionCount: 100
   mBulletsInMagazine: 40
   mAttackButtons: 000000

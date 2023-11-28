@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public AudioSource audioSource;
+    public AudioClip hitSound;
+
     void Start()
     {
         // Destroy the bullet after 10 seconds if it does not hit any object.
@@ -17,6 +20,7 @@ public class Bullet : MonoBehaviour
     IEnumerator Coroutine_Destroy(float duration)
     {
         yield return new WaitForSeconds(duration);
+        audioSource.PlayOneShot(hitSound);
         Destroy(gameObject);
     }
 
