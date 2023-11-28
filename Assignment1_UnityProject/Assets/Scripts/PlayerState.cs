@@ -211,7 +211,7 @@ public class PlayerState_RELOAD : PlayerState
 
     public override void Enter()
     {
-        mPlayer.mAnimator.SetTrigger("Reload");
+        mPlayer.mAnimator.SetBool("Reloading", true);
         mPlayer.Reload();
         dt = 0.0f;
     }
@@ -227,6 +227,7 @@ public class PlayerState_RELOAD : PlayerState
             mPlayer.mBulletsInMagazine += mPlayer.mAmunitionCount;
             mPlayer.mAmunitionCount = 0;
         }
+        mPlayer.mAnimator.SetBool("Reloading", false);
     }
 
     public override void Update()

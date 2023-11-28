@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using PGGE;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     private float hInput;
     private float vInput;
     private float speed;
-    private bool jump = false;
+    public bool flying = false;
     private bool crouch = false;
     public float mGravity = -30.0f;
     public float mJumpHeight = 1.0f;
@@ -57,20 +58,18 @@ public class PlayerMovement : MonoBehaviour
         vInput = 2.0f * mJoystick.Vertical;
     #endif
 
-        speed = mWalkSpeed;
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            speed = mWalkSpeed * 2.0f;
+            speed = Mathf.Lerp(speed, mWalkSpeed * 2, Time.deltaTime / 0.5f);
+        }
+        else
+        {
+            speed = Mathf.Lerp(speed, mWalkSpeed, Time.deltaTime / 0.5f);
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            jump = true;
-        }
-
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            jump = false;
+            Fly();
         }
 
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -108,17 +107,13 @@ public class PlayerMovement : MonoBehaviour
         mAnimator.SetFloat("PosX", 0);
         mAnimator.SetFloat("PosZ", vInput * speed / (2.0f * mWalkSpeed));
 
-        if(jump)
-        {
-            Jump();
-            jump = false;
-        }
+        
     }
 
-    void Jump()
+    void Fly()
     {
-        mAnimator.SetTrigger("Jump");
-        mVelocity.y += Mathf.Sqrt(mJumpHeight * -2f * mGravity);
+        mAnimator.SetBool("Flying", !flying);
+        flying = !flying; 
     }
 
     private Vector3 HalfHeight;
