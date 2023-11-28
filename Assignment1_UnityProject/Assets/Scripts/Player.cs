@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
   public GameObject mBulletPrefab;
   public float mBulletSpeed = 10.0f;
 
-  public int[] RoundsPerSecond = new int[3];
+  public float[] RoundsPerSecond = new float[3];
   bool[] mFiring = new bool[3];
 
 
@@ -223,6 +223,7 @@ public class Player : MonoBehaviour
   IEnumerator Coroutine_Firing(int id)
   {
     mFiring[id] = true;
+    yield return new WaitForSeconds(0.5f);
     FireBullet();
     yield return new WaitForSeconds(1.0f / RoundsPerSecond[id]);
     mFiring[id] = false;

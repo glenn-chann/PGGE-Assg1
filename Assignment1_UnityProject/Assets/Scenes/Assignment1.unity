@@ -1194,7 +1194,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mAnimator: {fileID: 147341974}
   mPlayerMovement: {fileID: 654126173}
-  mMaxAmunitionBeforeReload: 40
+  mMaxAmunitionBeforeReload: 5
   mAmunitionCount: 100
   mBulletsInMagazine: 40
   mAttackButtons: 000000
@@ -1205,11 +1205,14 @@ MonoBehaviour:
   mCanvas: {fileID: 388391649}
   mCrossHair: {fileID: 236538616}
   mAudioSource: {fileID: 654126171}
-  mAudioClipGunShot: {fileID: 8300000, guid: 4d4af27be602d214cb29acfc0a0aa0d3, type: 3}
+  mAudioClipGunShot: {fileID: 8300000, guid: fea5c9eef2df0a848be195efd3387ae4, type: 3}
   mAudioClipReload: {fileID: 8300000, guid: 0c39a88cd2acebd48a3c8157e4b4f4e7, type: 3}
   mBulletPrefab: {fileID: 1691027514373472607, guid: 3895fdcbfd71e5342843bf2ccdc84a10, type: 3}
   mBulletSpeed: 10
-  RoundsPerSecond: 01000000010000000a000000
+  RoundsPerSecond:
+  - 0
+  - 0
+  - 1.8
 --- !u!114 &654126173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2599,7 +2602,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2145642067}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 237916ef1c244b443ae7346e061ae7ef, type: 3}
   m_Name: 
@@ -2619,7 +2622,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2145642067}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f576e09978b8504798ff71bf241114d, type: 3}
   m_Name: 
@@ -2641,7 +2644,10 @@ MonoBehaviour:
   mAudioClipReload: {fileID: 8300000, guid: cf6ee17be5528264ca6faa9158aa2cf2, type: 3}
   mBulletPrefab: {fileID: 1794198430189847228, guid: d8d3ec337bac0704cbfca3cb3fdcb904, type: 3}
   mBulletSpeed: 10
-  RoundsPerSecond: 0a0000000800000002000000
+  RoundsPerSecond:
+  - 10
+  - 8
+  - 2
 --- !u!82 &2145642072
 AudioSource:
   m_ObjectHideFlags: 0
