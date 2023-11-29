@@ -14,6 +14,7 @@ namespace PGGE
         Vector3 rayStart;
         Vector3 rayDir;
         float rayDistance;
+        float characterHeight;
 
         public Transform CameraTransform
         {
@@ -34,6 +35,7 @@ namespace PGGE
         {
             mCameraTransform = cameraTransform;
             mPlayerTransform = playerTransform;
+            characterHeight = mPlayerTransform.gameObject.GetComponent<CharacterController>().height;
         }
 
 
@@ -51,14 +53,14 @@ namespace PGGE
             //-------------------------------------------------------------------
 
             //creating varibles for the raycast
-            //origin of the ray will be the player's position + 2 units on the y axis so the start of the ray will be at the
+            //origin of the ray will be the player's position + the character's height on the y axis so the start of the ray will be at the
             //head of the character instead of his feet
-            rayStart = mPlayerTransform.position + (2 * Vector3.up);
+            rayStart = mPlayerTransform.position + (characterHeight * Vector3.up);
 
-            //direction of the ray will be the ((camera's position - player's position) - 2 units on the y axis ).normalised
-            //this is because we will need to subtract 2 units from the y axis since we added 2 on the origin this is so the 
+            //direction of the ray will be the ((camera's position - player's position) - the character's height on the y axis ).normalised
+            //this is because we will need to subtract the character's height from the y axis since we added the character's height on the origin this is so the 
             //vector will be pointing at the camera instead of above it. normalise because its a direction vector.
-            rayDir = ((mCameraTransform.position - mPlayerTransform.position) - (2 * Vector3.up)).normalized;
+            rayDir = ((mCameraTransform.position - mPlayerTransform.position) - (characterHeight * Vector3.up)).normalized;
 
             //distance of the ray will be the magnitude of the vector camera's position - player's position * 1.2f so that the line
             //extends beyonf the back of the camera so that when we offset it away from the wall later there will still be a hit on 

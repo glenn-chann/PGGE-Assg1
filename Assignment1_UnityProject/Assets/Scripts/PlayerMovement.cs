@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     private float hInput;
     private float vInput;
     private float speed;
+    private float acceleration = 3f;
     public bool flying = false;
     private bool crouch = false;
     public float mGravity = -30.0f;
@@ -51,26 +52,54 @@ public class PlayerMovement : MonoBehaviour
     #if UNITY_STANDALONE
         hInput = Input.GetAxis("Horizontal");
         vInput = Input.GetAxis("Vertical");
-    #endif
+#endif
 
-    #if UNITY_ANDROID
+#if UNITY_ANDROID
         hInput = 2.0f * mJoystick.Horizontal;
         vInput = 2.0f * mJoystick.Vertical;
-    #endif
-
+#endif
+        //if holding down leftshift
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            speed = Mathf.Lerp(speed, mWalkSpeed * 2, Time.deltaTime / 0.5f);
+            //and speed is below or equals to double of mWalkSpeed
+            if (speed <= mWalkSpeed * 2)
+            {
+                //increase speed by acceleration times time.delta time
+                //this increases the speed gradually
+                speed += acceleration * Time.deltaTime;
+            } 
         }
+        // if not holding down leftshift
         else
         {
-            speed = Mathf.Lerp(speed, mWalkSpeed, Time.deltaTime / 0.5f);
+            //and speed is bigger then walkspeed
+            if (speed >= mWalkSpeed)
+            {
+                //decrease speed by acceleration times time.delta time
+                //this decreases the speed gradually
+                speed -= acceleration * Time.deltaTime;
+            }
+                
         }
 
+        speed = Mathf.Clamp(speed, mWalkSpeed, mWalkSpeed * 2);
+
+        //if (Input.GetKey(KeyCode.LeftShift))
+        //{
+        //    speed = mWalkSpeed * 2;
+        //}
+        //else
+        //{
+        //    speed = mWalkSpeed;
+        //}
+
+        //if press space
         if (Input.GetKeyDown(KeyCode.Space))
         {
-                flying = !flying;
-                mAnimator.SetBool("Flying", flying);
+            //toggle the flying bool 
+            flying = !flying;
+            //set the flying bool in the animator to the same as flying bool
+            mAnimator.SetBool("Flying", flying);
         }
 
         if (Input.GetKeyDown(KeyCode.Tab))

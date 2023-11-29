@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Material : MonoBehaviour
 {
+    //script to chose material type of the floor
     public enum FloorMaterial
     {
         Concrete,
