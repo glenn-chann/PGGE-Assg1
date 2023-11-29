@@ -89,6 +89,12 @@ public class AudioManager : MonoBehaviour
     //plays a random bite audio clip from the bite array with random pitch and volume 
     public void PlayBiteRandomly()
     {
+        //if the array is empty log a warning
+        if (bite == null)
+        {
+            Debug.LogWarning("No Flapping Audio Clip");
+            return;
+        }
         //randomise the pitch and volume 
         Source.pitch = Random.Range(0.4f, 0.6f);
         Source.volume = Random.Range(0.3f, 1f);
@@ -101,6 +107,12 @@ public class AudioManager : MonoBehaviour
     //plays a random scream audio clip from the scream array with random pitch and volume 
     public void PlayScreamRandomly()
     {
+        //if the array is empty log a warning
+        if (scream == null)
+        {
+            Debug.LogWarning("No Flapping Audio Clip");
+            return;
+        }
         //randomise the pitch and volume 
         Source.pitch = Random.Range(0.4f, 0.6f);
         Source.volume = Random.Range(0.3f, 1f);
